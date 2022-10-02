@@ -72,15 +72,15 @@ def analyse_partition_entry(partition_entry):
     partitionType = getAttribute(PARTITION_TYPE[0] - 1, partition_entry, PARTITION_TYPE[1])
     firstSectorStart = getAttribute(FIRST_SECTOR_START[0] - 1, partition_entry, FIRST_SECTOR_START[1])
     noOfSectors = getAttribute(NUMBER_OF_SECTORS[0] - 1, partition_entry, NUMBER_OF_SECTORS[1])
-    print("[+] Partition Type: " + partitionType)
+    print("[+] Partition Type (0xEE for GPT): " + partitionType)
     print("[+] Start of First Sector: " + firstSectorStart + "(First Sector is at LBA {})".format(convertStrHexToInt_littleEndian(firstSectorStart)))
     print("[+] Number of Sectors in Partition: " + noOfSectors + "({} Sectors in Partition)".format(convertStrHexToInt_littleEndian(noOfSectors)))
 
     choice = input("\n\n> Do you want to analyse this partition? (Y/N)")
     if choice.upper() == "Y":
-        analyse_partition(convertStrHexToInt_littleEndian(firstSectorStart),convertStrHexToInt_littleEndian(noOfSectors))
+        analyse_partition(convertStrHexToInt_littleEndian(firstSectorStart))
 
-def analyse_partition(startSector, noOfSectors):
+def analyse_partition(startSector):
     print("======================================")
     print("Go to Sector {}".format(startSector))
     bootsector = input("> Then paste the BOOT SECTOR here: ")
@@ -180,7 +180,7 @@ def analyse_partition(startSector, noOfSectors):
     print("|--------------Boot Sector-----------------|")
     print("|-------------Sector {} to {}--------------|".format(int(startSector), int(startSector) + 1))
     print("|------------------------------------------|")
-    print("|-----Boostrap Code/FSINFO Sector, etc-----|")
+    print("|-----Bootstrap Code/FSINFO Sector, etc-----|")
     print("|-------------Sector {} to {}--------------|".format(int(startSector) + 1, int(startSector) + int(convertStrHexToInt_littleEndian(NUM_OF_RESERVED_SECTORS)) - 1))
     print("|------------------------------------------|")
     print("|----------File Allocation Table 1---------|")
