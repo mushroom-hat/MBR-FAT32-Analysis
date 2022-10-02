@@ -12,5 +12,5 @@ When analysing **MBR**, you can select a partition. The program will then tell y
 ![alt text](https://github.com/mushroom-hat/MBR-FAT32-Analysis/blob/main/ss1.png?raw=true)
 
 
-After inputting the boot sector, you are now analysing the **Partition** (FAT32), it should look something like this:
+After inputting the boot sector of a partition, you are now analysing the **Partition** (FAT32), it should look something like this:
 ![alt text](https://github.com/mushroom-hat/MBR-FAT32-Analysis/blob/main/ss2.png?raw=true)
